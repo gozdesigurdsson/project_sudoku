@@ -21,8 +21,11 @@ function getBoxes() {
         .then(function () {
             var sudoku_board = document.getElementById("sudoku_board");
             sudoku_board.innerHTML = ""
-            var colors = ["#DACFEF", "#B2DEE6", "#EFD4D0", "#E9EFD0", "#CFEBEF", "#CFEFD6"]
-            var randomcolor = colors[Math.floor(Math.random()*colors.length)];
+            var colors = ["#DACFEF", "#EFD4D0", "#E9EFD0", "#CFEBEF", "#CFEFD6"]
+            var shades = ["#E9E1F5", "#F6E4E3", "#F1F6E3", "#E1F4F5", "#E3F6E7"]
+            var random_number = Math.floor(Math.random()*colors.length);
+            var randomcolor = colors[random_number];
+            var randomshade = shades[random_number];
             for (let index = 0; index < 9; index++) {
                 var outer_div = document.createElement("div");
                 outer_div.style.display = "flex";
@@ -44,6 +47,10 @@ function getBoxes() {
                     inputbox.style.textAlign = "center";
                     inputbox.type = "number";
                     inputbox.value = boxes[index][cellindex];
+                    if (inputbox.value === boxes[index][cellindex]) {
+                        inputbox.disabled = "True";
+                        inputbox.style.backgroundColor = randomshade;
+                    }
                     inputbox.className = "cell" + index + cellindex;
                     outer_div.appendChild(inputbox);
                 };
