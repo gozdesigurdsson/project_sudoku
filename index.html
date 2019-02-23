@@ -9,7 +9,14 @@
 </head>
 
 <body>
+    <select id="difficultySelector">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select>
     <button type="button" id="generateButton" onclick="getBoxes()">Generate Sudoku</button>
+    <button type="button" id="validateButton">Validate</button>
+    <p id="sudokuId"></p>
     <div id="sudoku_board" class="sudoku_board"></div>
     <script src="app.js"></script>
 </body>

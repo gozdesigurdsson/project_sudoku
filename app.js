@@ -1,8 +1,9 @@
 var boxes = []
+var sudokuID = ""
 
 function getBoxes() {
     //Prepare the parameter value for 'myParam'
-    var paramValue = "easy";
+    var paramValue = document.getElementById("difficultySelector").value;
 
     //The URL to which we will send the request
     var url = 'https://veff213-sudoku.herokuapp.com/api/v1/sudoku';
@@ -13,6 +14,7 @@ function getBoxes() {
             //When successful, print 'Success: ' and the received data
             console.log("Success: ", response.data);
             boxes = response.data.board.boxes
+            sudokuID = response.data.board._id
         })
         .catch(function (error) {
             //When unsuccessful, print the error.
@@ -20,7 +22,9 @@ function getBoxes() {
         })
         .then(function () {
             var sudoku_board = document.getElementById("sudoku_board");
-            sudoku_board.innerHTML = ""
+            var sudoku_id = document.getElementById("sudokuId");
+            sudoku_id.innerHTML = sudokuID;
+            sudoku_board.innerHTML = "";
             var colors = ["#DACFEF", "#EFD4D0", "#E9EFD0", "#CFEBEF", "#CFEFD6"]
             var shades = ["#E9E1F5", "#F6E4E3", "#F1F6E3", "#E1F4F5", "#E3F6E7"]
             var random_number = Math.floor(Math.random()*colors.length);
