@@ -1,0 +1,9 @@
+#sudoku_board {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 460px;
+    height: 480px;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
