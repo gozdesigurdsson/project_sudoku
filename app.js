@@ -13,8 +13,8 @@ function getBoxes() {
         .then(function (response) {
             //When successful, print 'Success: ' and the received data
             console.log("Success: ", response.data);
-            boxes = response.data.board.boxes
-            sudokuID = response.data.board._id
+            boxes = response.data.board.boxes;
+            sudokuID = response.data.board._id;
         })
         .catch(function (error) {
             //When unsuccessful, print the error.
@@ -25,8 +25,8 @@ function getBoxes() {
             var sudoku_id = document.getElementById("sudokuId");
             sudoku_id.innerHTML = sudokuID;
             sudoku_board.innerHTML = "";
-            var colors = ["#DACFEF", "#EFD4D0", "#E9EFD0", "#CFEBEF", "#CFEFD6"]
-            var shades = ["#E9E1F5", "#F6E4E3", "#F1F6E3", "#E1F4F5", "#E3F6E7"]
+            var colors = ["#DACFEF", "#EFD4D0", "#E9EFD0", "#CFEBEF", "#CFEFD6"];
+            var shades = ["#E9E1F5", "#F6E4E3", "#F1F6E3", "#E1F4F5", "#E3F6E7"];
             var random_number = Math.floor(Math.random()*colors.length);
             var randomcolor = colors[random_number];
             var randomshade = shades[random_number];
@@ -58,6 +58,6 @@ function getBoxes() {
                     inputbox.className = "cell" + index + cellindex;
                     outer_div.appendChild(inputbox);
                 };
-            }
+            };
         });
 }
