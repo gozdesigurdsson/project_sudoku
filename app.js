@@ -90,12 +90,14 @@ function getBoxes() {
                     inputbox.style.flex =  "1 1 50px";
                     inputbox.style.fontSize = "36px";
                     inputbox.style.textAlign = "center";
+                    inputbox.style.textShadow = "0px 0px 1px #000000";
                     inputbox.type = "number";
                     inputbox.value = boxes[index][cellindex];
                     if (inputbox.value === boxes[index][cellindex]) {
                         inputbox.disabled = "True";
                         inputbox.style.backgroundColor = randomshade;
                     }
+                    inputbox.id = "cell"+index+cellindex;
                     inputbox.className = "cell" + index + cellindex;
                     outer_div.appendChild(inputbox);
                 };
