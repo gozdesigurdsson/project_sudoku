@@ -1,19 +1,52 @@
-#sudoku_board {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 460px;
-    height: 480px;
-    justify-content: space-evenly;
+.header{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: Helvetica;
+    color: #6d7b70;
     margin: 0 auto;
+    padding: 5px;
+    text-align: center;
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.cell {
+    background: #ffffff;
+    width: 30px;
+    padding: 15px;
+    border-inline-start-style: none;
+    border-block-end-style: none; 
+    border-top-style: none;
+    border-right-style: none;
+    border: 1px solid #d2bd02;
+    border-radius: 1px;
+    border-left: 0;
+    border-top: 0;
 }
 
-input[type=number] {
-    -moz-appearance:textfield;
+.sudoku-table {
+    margin: auto;
+    border-collapse: collapse;
+    border: 1px #d2bd02 solid ;
+}
+
+.sudoku-table td {
+    border: 0;
+    padding: 0;
+}
+
+.sudoku-table td:nth-child(3n+3) .cell {
+    border-right: solid #d2bd02 2px;
+
+}
+
+.sudoku-table tr:nth-child(3n+3) .cell {
+    border-bottom: solid #d2bd02 2px;
+
+}
+
+.background-grey{
+    background: #E1E3E3;
+}
+
+.background-yellow{
+    background: #F9FF97;
 }
