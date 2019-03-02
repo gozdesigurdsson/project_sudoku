@@ -36,7 +36,7 @@ var sudokuID = ""
 
 function doAjax() {
     //Prepare the parameter value for 'myParam'
-    var paramValue = document.getElementById("difficulty").value;
+    var paramValue = document.getElementById("difficultySelector").value;
 
     //The URL to which we will send the request
     var url = 'https://veff213-sudoku.herokuapp.com/api/v1/sudoku';
@@ -54,10 +54,14 @@ function doAjax() {
             //When unsuccessful, print the error.
             console.log(error);
             if (paramValue === "easy") {
+
                 boxes = defaulteasy;
+
             } else if (paramValue === "medium") {
+
                 boxes = defaultmedium;
             } else {
+                
                 boxes = defaulthard;
             }
             sudokuID = "-1";
@@ -66,17 +70,26 @@ function doAjax() {
             // This code is always executed, independent of whether the request succeeds or fails.
             // Loops through the arrays and get values for each table cell
             for (var i=0; i < boxes.length; i++){
+
                 for(var k=0; k < boxes[i].length; k++){
+
                     var cellData = document.getElementById('cell'+ i + k )
 
                     value = boxes[i][k]
 
                     // if value is not a number, can be changed.
-                    // if value is a number, change is not permitted. 
+                    // if value is not a number, will remain as blank (prevent refilling while regenerating)
+                    // if value is a number, change is not permitted.
+                    // if value is a number, change the class name to be able to change background color. 
+
                     if (value == '.'){
+
                         cellData.removeAttribute('readonly')
+                        cellData.value = ""
+                        cellData.className = "cell"
 
                     } else {
+
                         cellData.value = value
                         cellData.setAttribute('readonly','')
                         cellData.className = "cell background-grey"
@@ -84,26 +97,66 @@ function doAjax() {
                 }
             } 
         })
-}
-
+    }
 
 var validateBoard = function() {
 
     var newBoxes = []
 
     for (var i=0; i < 9; i++){
+
         newBoxes[i] = []
+
         for(var k=0; k < 9; k++){
+
             var newElement = document.getElementById('cell'+ i + k)
             var newValue = newElement.value
             newBoxes[i][k] = newValue
 
             if (newValue == ""){
-                console.log("working")
                 newElement.className = "cell background-yellow"
             }
-        
         }
     }
+    validateArray(newBoxes)
     console.log(newBoxes)
+        
 }
+
+function validateArray(boxes){
+    for (var i = 0; i < 9; i++) {
+
+        for(var k = 0; k < 9; k++){
+
+            if (boxes[i][k] != "") {
+
+                for (var j = k + 1; j < boxes[i].length; j++) {
+
+                    if (boxes[i][k] == boxes[i][j]) {
+
+                        console.log("ik: " + boxes[i][k]);
+                        console.log("ij: " + boxes[i][j]);
+                        console.log("duplicate found");
+                        console.log(document.getElementById("cell" + i + k));
+
+                        var currenCell = document.getElementById("cell" + i + k);
+                        var otherCell =  document.getElementById("cell" + i + j);
+
+                        if (!currenCell.hasAttribute("readonly")) {
+                            currenCell.className = "cell background-red"
+                        }
+                        if (!otherCell.hasAttribute("readonly")) {
+                            otherCell.className = "cell background-red"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+ 
+    
+
+

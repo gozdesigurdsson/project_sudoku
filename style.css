@@ -43,10 +43,15 @@
 
 }
 
-.background-grey{
+.background-grey {
     background: #E1E3E3;
 }
 
-.background-yellow{
+.background-yellow {
     background: #F9FF97;
+}
+
+.background-red {
+    background: red;
+
 }
