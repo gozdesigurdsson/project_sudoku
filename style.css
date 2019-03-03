@@ -14,10 +14,6 @@ body{
     max-width: 30px;
     background: #ffffff;
     padding: 15px;
-    border-inline-start-style: none;
-    border-block-end-style: none; 
-    border-top-style: none;
-    border-right-style: none;
     border: 1px solid #d2bd02;
     border-radius: 1px;
     border-left: 0;
