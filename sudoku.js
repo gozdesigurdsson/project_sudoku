@@ -100,63 +100,86 @@ function doAjax() {
     }
 
 var validateBoard = function() {
+    var isValid = true;
+    var sudokuTable = document.getElementsByClassName('sudoku-table')[0];
 
-    var newBoxes = []
+    var rowCol = getRowCol(sudokuTable);
 
-    for (var i=0; i < 9; i++){
-
-        newBoxes[i] = []
-
-        for(var k=0; k < 9; k++){
-
-            var newElement = document.getElementById('cell'+ i + k)
-            var newValue = newElement.value
-            newBoxes[i][k] = newValue
-
-            if (newValue == ""){
-                newElement.className = "cell background-yellow"
-            }
-        }
-    }
-    validateArray(newBoxes)
-    console.log(newBoxes)
-        
-}
-
-function validateArray(boxes){
-    for (var i = 0; i < 9; i++) {
-
-        for(var k = 0; k < 9; k++){
-
-            if (boxes[i][k] != "") {
-
-                for (var j = k + 1; j < boxes[i].length; j++) {
-
-                    if (boxes[i][k] == boxes[i][j]) {
-
-                        console.log("ik: " + boxes[i][k]);
-                        console.log("ij: " + boxes[i][j]);
-                        console.log("duplicate found");
-                        console.log(document.getElementById("cell" + i + k));
-
-                        var currenCell = document.getElementById("cell" + i + k);
-                        var otherCell =  document.getElementById("cell" + i + j);
-
-                        if (!currenCell.hasAttribute("readonly")) {
-                            currenCell.className = "cell background-red"
+    for (var m=0; m < 9; m++) {
+        for (var n = 0; n < 9; n++) {
+            var cellId = sudokuTable.rows[m].cells[n].firstChild.id;
+            var newElement = document.getElementById(cellId);
+            if (newElement.className !== "cell background-grey") {
+                if (newElement.value !== ''){
+                    if(newElement.value < 1 || newElement.value > 9){
+                        isValid = false;
+                        document.getElementById(cellId).className = 'cell background-red';
+                    }
+                    else{
+                        var rowColumnValid = validateRowColumn(rowCol, newElement.value, n, m);
+                        var boxValid = validateBox(boxes, newElement.value, cellId[4], cellId[5]);
+                        if (rowColumnValid && boxValid ){
+                            document.getElementById("resultMsg").firstChild.nodeValue = 'Sudoku Valid!';
                         }
-                        if (!otherCell.hasAttribute("readonly")) {
-                            otherCell.className = "cell background-red"
+                        else {
+                            isValid = false;
+                            document.getElementById(cellId).className = 'cell background-red';
                         }
                     }
                 }
+                else{
+                    isValid = false;
+                    document.getElementById(cellId).className = 'cell background-yellow';
+                }
+
             }
         }
     }
-}
+
+    console.log("Is the board valid: " + isValid);
+    return isValid
+};
+
+var getRowCol = function(htmlTable) {
+
+    var rowsColumns = [];
+    for (var i = 0; i < 9; i++) {
+        rowsColumns[i] = [];
+        for (var j = 0; j < 9; j++) {
+            var cellId = htmlTable.rows[i].cells[j].firstChild.id;
+            var newElement = document.getElementById(cellId);
+            rowsColumns[i][j] = newElement.value;
+        }
+    }
+    return rowsColumns
+};
 
 
- 
-    
+var validateRowColumn = function(table, value, x, y){
+    // Validate row
+    var rowValid = true;
+    for (var i = 0; i < 9; i++) {
+        if(table[y][i] === value && i !== x){
+            rowValid = false
+        }
+    }
 
+    // Validate column
+    var columnValid = true;
+    for (var j = 0; j < 9; j++) {
+        if(table[j][x] === value && j !== y){
+            columnValid = false
+        }
+    }
+    return rowValid || columnValid
+};
 
+var validateBox = function(boxes, value, boxNR, boxPlace){
+    var boxValid = true;
+    for(var i = 0; i < 9; i++){
+        if(boxes[boxNR][i] === value && i !== boxPlace){
+            boxValid = false
+        }
+    }
+    return boxValid
+};

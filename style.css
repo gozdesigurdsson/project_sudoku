@@ -42,6 +42,9 @@
     border-bottom: solid #d2bd02 2px;
 
 }
+.resultMsg {
+    background: green;
+}
 
 .background-grey {
     background: #E1E3E3;
