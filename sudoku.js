@@ -118,10 +118,10 @@ var validateBoard = function() {
                     else{
                         var rowColumnValid = validateRowColumn(rowCol, newElement.value, n, m);
                         var boxValid = validateBox(boxes, newElement.value, cellId[4], cellId[5]);
-                        if (rowColumnValid && boxValid ){
-                            document.getElementById("resultMsg").firstChild.nodeValue = 'Sudoku Valid!';
+                        if (rowColumnValid && boxValid){
+                            document.getElementById(cellId).className = 'cell background-white';
                         }
-                        else {
+                        else{
                             isValid = false;
                             document.getElementById(cellId).className = 'cell background-red';
                         }
@@ -131,11 +131,16 @@ var validateBoard = function() {
                     isValid = false;
                     document.getElementById(cellId).className = 'cell background-yellow';
                 }
-
+                
             }
         }
     }
-
+    if(isValid === true){
+        document.getElementById('resultMsg').firstChild.nodeValue = 'Sudoku is Valid';
+    }
+    else {
+        document.getElementById('resultMsg').firstChild.nodeValue = '';
+    }
     console.log("Is the board valid: " + isValid);
     return isValid
 };
@@ -160,6 +165,7 @@ var validateRowColumn = function(table, value, x, y){
     var rowValid = true;
     for (var i = 0; i < 9; i++) {
         if(table[y][i] === value && i !== x){
+            console.log("row not valid")
             rowValid = false
         }
     }
@@ -168,10 +174,11 @@ var validateRowColumn = function(table, value, x, y){
     var columnValid = true;
     for (var j = 0; j < 9; j++) {
         if(table[j][x] === value && j !== y){
+            console.log("column not valid")
             columnValid = false
         }
     }
-    return rowValid || columnValid
+    return rowValid && columnValid
 };
 
 var validateBox = function(boxes, value, boxNR, boxPlace){
