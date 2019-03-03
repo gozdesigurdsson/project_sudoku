@@ -78,7 +78,7 @@ function doAjax() {
                     value = boxes[i][k]
 
                     // if value is not a number, can be changed.
-                    // if value is not a number, will remain as blank (prevent refilling while regenerating)
+                    // if value is not a number, will remain blank (prevent refilling while regenerating)
                     // if value is a number, change is not permitted.
                     // if value is a number, change the class name to be able to change background color. 
 
@@ -136,11 +136,13 @@ var validateBoard = function() {
         }
     }
     if(isValid === true){
-        document.getElementById('resultMsg').firstChild.nodeValue = 'Sudoku is Valid';
+        document.getElementById('resultMsg').innerHTML = '<div class="result result-success">Congratulations! Sudoku is Valid</div>';
     }
     else {
-        document.getElementById('resultMsg').firstChild.nodeValue = '';
+        document.getElementById('resultMsg').innerHTML = '<div class="result result-error">Invalid. Try again.</div>';
     }
+
+    goDefault()
     console.log("Is the board valid: " + isValid);
     return isValid
 };
@@ -190,3 +192,22 @@ var validateBox = function(boxes, value, boxNR, boxPlace){
     }
     return boxValid
 };
+
+function goDefault(){
+    // loops through yellow and red backgrounds and changes background to normal for each cell
+    // makes message board disapper 5 sec after validation
+    setTimeout(function(){
+        var redOnes = document.getElementsByClassName('background-red');
+        var yellowOnes = document.getElementsByClassName('background-yellow');
+        document.getElementById("resultMsg").innerHTML = "";
+        while (redOnes.length > 0) {
+            redOnes[0].classList.remove('background-red')
+        }
+        while (yellowOnes.length > 0) {
+            yellowOnes[0].classList.remove('background-yellow')
+        }
+    }
+    , 5000);
+}
+
+

@@ -1,7 +1,9 @@
-.header{
+body{
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: Helvetica;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.header{
     color: #6d7b70;
     margin: 0 auto;
     padding: 5px;
@@ -9,8 +11,8 @@
 }
 
 .cell {
+    max-width: 30px;
     background: #ffffff;
-    width: 30px;
     padding: 15px;
     border-inline-start-style: none;
     border-block-end-style: none; 
@@ -42,8 +44,20 @@
     border-bottom: solid #d2bd02 2px;
 
 }
-.resultMsg {
-    background: green;
+
+.result {
+    margin: 0 auto;
+    margin-top: 10px;
+    max-width: 400px;
+    text-align: center;
+    padding: 15px;
+}
+.result-error {
+    background: #FB7C70;
+}
+
+.result-success {
+   background: #9BE6A0;
 }
 
 .background-grey {
@@ -55,6 +69,6 @@
 }
 
 .background-red {
-    background: red;
+    background: #FB7C70;
 
 }
