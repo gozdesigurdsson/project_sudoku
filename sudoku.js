@@ -69,6 +69,8 @@ function doAjax() {
         .then(function () {
             // This code is always executed, independent of whether the request succeeds or fails.
             // Loops through the arrays and get values for each table cell
+            document.getElementById("sudokuId").innerHTML = "sudoku id number: " + sudokuID;
+
             for (var i=0; i < boxes.length; i++){
 
                 for(var k=0; k < boxes[i].length; k++){
