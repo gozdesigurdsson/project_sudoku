@@ -10,6 +10,15 @@ body{
     text-align: center;
 }
 
+.menu {
+    display: flex;
+    margin: 0 auto;
+    max-width: 500px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
 .cell {
     max-width: 30px;
     background: #ffffff;
@@ -67,4 +76,8 @@ body{
 .background-red {
     background: #FB7C70;
 
+}
+
+.id-nr {
+    text-align: right;
 }

@@ -13,20 +13,19 @@
         <h1>Let's play sudoku!</h1>
     </header>
 
-    <div id="selection">
-        <button type="button" id="generateButton" onclick="doAjax()">Generate</button>
-
-        <label for="difficultySelector">Difficulty</label>
-        <select id="difficultySelector">
-                <option value="easy">easy</option>
-                <option value="medium">medium</option>
-                <option value="hard">hard</option>
-        </select>
-
-        <button type="button" id="validateButton" onclick="validateBoard()">Validate</button>
+    <div class="menu">
+        <div class="menu-button">
+            <label for="difficultySelector">Difficulty</label>
+            <select id="difficultySelector">
+                    <option value="easy">easy</option>
+                    <option value="medium">medium</option>
+                    <option value="hard">hard</option>
+            </select>
+        </div>
+        <div class="menu-button"> <button type="button" id="generateButton" onclick="doAjax()">Generate</button> </div>
+        <div class="menu-button"> <button type="button" id="validateButton" onclick="validateBoard()">Validate</button> </div> 
     </div>
-    
-    <p id="sudokuId"></p>
+
     <div>
         <table class="sudoku-table">
             <tbody class="table-body">
@@ -42,7 +41,8 @@
             </tbody>
         </table>
 
-        <div id="resultMsg" class='result'></div>
+        <div id="resultMsg" class="result"></div>
+        <div> <p id="sudokuId" class="id-nr"></p> </div>
 
     </div>
 
